@@ -6,8 +6,6 @@
 #include <vector>
 #include <string>
 
-
-
 using namespace std;
 
 class Mascota {
@@ -20,11 +18,12 @@ private:
     int NivelEnergia;
     vector <Objeto*> ObjetosAsignados;
     vector<Habilidad*> HabilidadesMascota;
+
 public:
-    //Constructor de la clase Mascota
+    // Constructor
     Mascota(string nombre);
 
-    //Metodos
+    // Métodos getters
     string getNombre();
     string getEstadoEmocional();
     string getEstadoSalud();
@@ -32,12 +31,16 @@ public:
     int getNivelExp();
     int getNivelEnergia();
 
-    //Dar Objeto
-    void DarObjeto(Objeto* objeto);
+    // Métodos modificadores
+    void setNivelExp(int nivel);
 
-    //Ver las Habilidades y los Objetos que se le dio a la Mascota
+    // Métodos de interacción
+    void DarObjeto(Objeto* objeto);
     void VerObjetosAsignados();
     void VerHabilidadesMascota();
+
+    void Evolucionar();
+    void AprenderHabilidad(Habilidad* habilidad);
 };
 
 #endif

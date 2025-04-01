@@ -1,55 +1,64 @@
 #include "Mascota.h"
-
 #include <iostream>
-#include <ostream>
+
+using namespace std;
 
 Mascota::Mascota(string nombre) {
-    this->Nombre = nombre;
-    this->EstadoEmocional = "Feliz";
-    this->EstadoSalud = "Sano";
-    this->Edad = 1;
-    this->NivelExp = 1;
-    this->NivelEnergia = 1;
+    Nombre = nombre;
+    EstadoEmocional = "Feliz";
+    EstadoSalud = "Sano";
+    Edad = 1;
+    NivelExp = 0;
+    NivelEnergia = 5;
 }
 
-string Mascota::getNombre() {
-    return this->Nombre;
-}
+// Getters
+string Mascota::getNombre() { return Nombre; }
+string Mascota::getEstadoEmocional() { return EstadoEmocional; }
+string Mascota::getEstadoSalud() { return EstadoSalud; }
+int Mascota::getEdad() { return Edad; }
+int Mascota::getNivelExp() { return NivelExp; }
+int Mascota::getNivelEnergia() { return NivelEnergia; }
 
-string Mascota::getEstadoEmocional() {
-    return this->EstadoEmocional;
-};
+void Mascota::setNivelExp(int nivel) { NivelExp = nivel; }
 
-string Mascota::getEstadoSalud() {
-    return this->EstadoSalud;
-}
-
-int Mascota::getNivelExp() {
-    return this->NivelExp;
-}
-
-int Mascota::getNivelEnergia() {
-    return this->NivelEnergia;
-}
-
-int Mascota::getEdad() {
-    return this->Edad;
-}
-
+// Métodos para objetos y habilidades
 void Mascota::DarObjeto(Objeto* objeto) {
-    this->ObjetosAsignados.push_back(objeto);
+    ObjetosAsignados.push_back(objeto);
 }
 
 void Mascota::VerObjetosAsignados() {
-    for(auto& objeto : this->ObjetosAsignados) {
-        cout << objeto->getNombre() << objeto->getEfecto() << "\n" << endl;
+    cout << "Objetos asignados a " << Nombre << ":\n";
+    for (Objeto* obj : ObjetosAsignados) {
+        cout << "- " << obj->getNombre() << "\n";
     }
 }
 
 void Mascota::VerHabilidadesMascota() {
-    cout << this->Nombre << "tiene las siguientes habilidades:\n" << endl;
-    for(auto& habilidad: this->HabilidadesMascota) {
-         cout << habilidad->getNombreHabilidad() <<" " << habilidad->getDescripcion() << "\n" << endl;
+    cout << "Habilidades de " << Nombre << ":\n";
+    for (Habilidad* habilidad : HabilidadesMascota) {
+        cout << "- " << habilidad->getNombreHabilidad() << "\n";
+    }
+}
 
+
+void Mascota::Evolucionar() {
+    if (NivelExp >= 5) {
+        Edad++;
+        NivelEnergia += 2;
+        NivelExp = 1;
+        cout << Nombre << " ha evolucionado! Ahora tiene " << Edad << " años y más energía.\n";
+    } else {
+        cout << Nombre << " necesita más experiencia para evolucionar.\n";
+    }
+}
+
+
+void Mascota::AprenderHabilidad(Habilidad* habilidad) {
+    if (NivelExp >= habilidad->getNivelExpRequerida()) {
+        HabilidadesMascota.push_back(habilidad);
+        cout << Nombre << " ha aprendido la habilidad " << habilidad->getNombreHabilidad() << "!\n";
+    } else {
+        cout << Nombre << " no tiene suficiente experiencia para aprender esta habilidad.\n";
     }
 }
