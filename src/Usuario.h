@@ -36,6 +36,8 @@ public:
     //Buscar Mascota
     Mascota* getMascota(string nombre);
 
+    //Get todas las mascotas
+    vector<Mascota>& getMascotas();
     //Dar Objeto a Mascota
     void DarObjetoMascota(Mascota* mascota, Objeto* objeto);
 

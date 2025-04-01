@@ -36,6 +36,10 @@ Mascota* Usuario::getMascota(string nombre) {
     return nullptr;
 }
 
+vector<Mascota>& Usuario::getMascotas() {
+    return MisMascotas;
+}
+
 void Usuario::DarObjetoMascota(Mascota *mascota, Objeto *objeto) {
     mascota->DarObjeto(objeto);
 }

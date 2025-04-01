@@ -1,6 +1,6 @@
-main: #include <iostream>
-#include "Sistema.h"
-#include "Mascota.h"
+#include <iostream>
+#include "src/Sistema.h"
+#include "src/Mascota.h"
 
 using namespace std;
 
